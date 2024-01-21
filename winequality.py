@@ -19,7 +19,14 @@ from sklearn.ensemble import RandomForestClassifier
 rnd = RandomForestClassifier(max_depth= 20,
                                min_samples_leaf= 3,
                                min_samples_split= 10,
-                               n_estimators= 100)
+                               n_estimators= 100,
+                               random_state= 40,
+                               max_features= 'sqrt',
+                               bootstrap= True,
+                               n_jobs=-1,
+                               oob_score=True)
+
+
 fit_rnd = rnd.fit(x_train,y_train)
 rnd_score = rnd.score(x_test,y_test)
 print('score of model is : ',rnd_score)
