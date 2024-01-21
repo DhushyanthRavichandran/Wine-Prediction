@@ -6,7 +6,7 @@ import joblib
 import pickle
 
 
-model_filename = 'winequality.joblib'
+model_filename = 'winesquality.joblib'
 model = joblib.load(model_filename)
 
 
@@ -134,25 +134,33 @@ sulphates=st.sidebar.slider('sulphates', min_value=0, max_value=100)
 
 alcohol=st.sidebar.slider('alcohol', min_value=0, max_value=100)
 
+quality=st.sidebar.slider('quality', min_value=3, max_value=9)
 
-features = np.array([[fixed_acidity, volatile_acidity,citric_acid,residual_sugar,chlorides,free_sulfur_dioxide,total_sulfur_dioxide,density,pH,sulphates,alcohol]])  # Adjust based on your model's input features
-
-# # Display a chat input widget.
-# st.chat_input("Say something")
-
-
-# Identify missing values in the features array
-missing_values = np.isnan(features)
-
-# Option 1: Impute missing values with a specific value (e.g., 0)
-features_imputed = np.nan_to_num(features, nan=0)
+features = np.array([[fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol, quality]])
+# # # Display a chat input widget.
+# # st.chat_input("Say something")
 
 
-# Option 2: Remove rows with missing values
-features_no_missing = features[~missing_values.any(axis=1)]
+# # Identify missing values in the features array
+# missing_values = np.isnan(features)
+
+# # Option 1: Impute missing values with a specific value (e.g., 0)
+# features_imputed = np.nan_to_num(features, nan=0)
+
+
+# # Option 2: Remove rows with missing values
+# features_no_missing = features[~missing_values.any(axis=1)]
+
+
+
+
 
 # Now you can use the processed features in your prediction
-prediction = model.predict(features_no_missing)
+prediction = model.predict(features)
+
+
+
+
 
 # Display the predicted wine quality
 st.write(f'Predicted Wine Quality: {prediction[0]}')

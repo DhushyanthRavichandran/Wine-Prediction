@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import pickle
 
+import xgboost as xgb
 
 
 
@@ -19,7 +20,7 @@ x_train= scaler.fit_transform(x_train)
 x_test= scaler.transform(x_test)  # Changed from fit_transform to transform
 
 from sklearn.ensemble import RandomForestClassifier
-rnd = RandomForestClassifier(max_depth= 20,
+rd = RandomForestClassifier(max_depth= 20,
                                min_samples_leaf= 3,
                                min_samples_split= 10,
                                n_estimators= 100,
@@ -28,6 +29,16 @@ rnd = RandomForestClassifier(max_depth= 20,
                                bootstrap= True,
                                n_jobs=-1,
                                oob_score=True)
+
+
+
+# rnd =xgb.XGBRegressor(objective='reg:squarederror', random_state=42)
+
+# import lightgbm as lgb
+# rnd = lgb.LGBMRegressor(random_state=42)
+
+from catboost import CatBoostRegressor
+rnd = CatBoostRegressor(random_state=42, verbose=False, n_estimators=4000, learning_rate=0.05, depth=5, l2_leaf_reg=10)
 
 
 fit_rnd = rnd.fit(x_train,y_train)
