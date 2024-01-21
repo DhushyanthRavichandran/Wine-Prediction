@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-
+import pandas
 
 
 import pickle
@@ -143,8 +143,19 @@ features = np.array([[fixed_acidity, volatile_acidity,citric_acid,residual_sugar
 # # Display a chat input widget.
 # st.chat_input("Say something")
 
-# Make predictions using the loaded model
-prediction = model.predict(features)
+
+# Identify missing values in the features array
+missing_values = np.isnan(features)
+
+# Option 1: Impute missing values with a specific value (e.g., 0)
+features_imputed = np.nan_to_num(features, nan=0)
+
+
+# Option 2: Remove rows with missing values
+features_no_missing = features[~missing_values.any(axis=1)]
+
+# Now you can use the processed features in your prediction
+prediction = model.predict(features_no_missing)
 
 # Display the predicted wine quality
 st.write(f'Predicted Wine Quality: {prediction[0]}')
