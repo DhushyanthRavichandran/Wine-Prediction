@@ -2,15 +2,12 @@ import streamlit as st
 import numpy as np
 import pandas
 
-
+import joblib
 import pickle
 
 
-# Load the trained model from the pickle file
-model_filename = 'winequality.pkl'
-with open(model_filename, 'rb') as model_file:
-    model = pickle.load(model_file)
-
+model_filename = 'winequality.joblib'
+model = joblib.load(model_filename)
 
 
 

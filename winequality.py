@@ -2,6 +2,9 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import pickle
 
+
+
+
 data=pd.read_csv("D:\ml\wine\WineQT.csv")
 
 data.drop(labels=['Id'],inplace=True,axis=1)
@@ -32,6 +35,8 @@ rnd_score = rnd.score(x_test,y_test)
 print('score of model is : ',rnd_score)
 x_predict = list(rnd.predict(x_test))
 
-# Save the model to a file
-with open('winequality.pkl', 'wb') as f:
-    pickle.dump(rnd, f)
+import joblib
+
+# Save the model to a file using joblib
+model_filename = 'winequality.joblib'
+joblib.dump(rnd, model_filename)
