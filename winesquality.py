@@ -31,9 +31,11 @@ scaler = StandardScaler()
 features = scaler.fit_transform(features)
 X_train,X_test,y_train,y_test = train_test_split(features,labels,test_size=0.2, random_state=42)
 
+from catboost import CatBoostRegressor
 
 import xgboost as xgb
 rnd =xgb.XGBRegressor(objective='reg:squarederror', random_state=42)
+# rnd = CatBoostRegressor(iterations=500, depth=10, learning_rate=0.05, loss_function='RMSE')
 
 fit_rnd = rnd.fit(X_train,y_train)
 rnd_score = rnd.score(X_test,y_test)
