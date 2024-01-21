@@ -25,17 +25,16 @@ df = clean_dataset(df)
 #creating features and label
 features = df.drop(['type'],axis=1)
 labels = df['type']
-df.drop(labels=['Id'],inplace=True,axis=1)
 
 #scaling values
 scaler = StandardScaler()
 features = scaler.fit_transform(features)
 X_train,X_test,y_train,y_test = train_test_split(features,labels,test_size=0.2, random_state=42)
-from sklearn.ensemble import RandomForestClassifier
-rnd = RandomForestClassifier(max_depth= 20,
-                               min_samples_leaf= 3,
-                               min_samples_split= 10,
-                               n_estimators= 100)
+
+
+import xgboost as xgb
+rnd =xgb.XGBRegressor(objective='reg:squarederror', random_state=42)
+
 fit_rnd = rnd.fit(X_train,y_train)
 rnd_score = rnd.score(X_test,y_test)
 print('score of model is : ',rnd_score)
