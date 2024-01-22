@@ -6,7 +6,7 @@ import joblib
 import pickle
 
 
-model_filename = 'winesquality.joblib'
+model_filename = 'winequality.joblib'
 model = joblib.load(model_filename)
 
 
@@ -75,14 +75,17 @@ features = np.array([[fixed_acidity, volatile_acidity, citric_acid, residual_sug
 
 prediction = model.predict(features)
 
+
+
 st.write('''
-Explore our wine prediction platform featuring an advanced XGBoost model boasting a 95% accuracy in classifying wines as red or white. This powerful tool unveils intricate patterns, providing precise predictions for enthusiasts and industry professionals. Check out the predicted results to make informed decisions and elevate your wine experiences. Cheers to accurate insights!
+Explore our wine prediction platform featuring an advanced XGBoost model boasting a 95% accuracy in classifying wines as red or white. This powerful tool unveils intricate patterns, providing precise predictions for enthusiasts and industry professionals. Check out the predicted results to make informed decisions and elevate your wine experiences. Cheers to accurate insights!''')
+
+# Provide instructions
+st.write('## How to Use:')
+st.write('Adjust the sliders to input different wine features, and the model will predict whether the wine is red or white.')
 
 
+threshold = 0.6 # Threshold for model classification
+predicted_wine_type = "Red Wine" if prediction[0] >= threshold else "White Wine"
+st.write(f'## Predicted Wine Type: {predicted_wine_type}')
 
-
-''')
-
-
-
-st.write(f'## Predicted Wine Quality: {"Red Wine" if prediction[0]<0.5 else "White Wine"}')
