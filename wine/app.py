@@ -6,11 +6,8 @@ import joblib
 import pickle
 
 
-model_filename = 'winesquality.joblib'
+model_filename = 'winequality.joblib'
 model = joblib.load(model_filename)
-
-
-
 
 
 st.title('Wine quality')
@@ -24,18 +21,8 @@ Innovation meets tradition in the wine world, where old-world wineries and susta
 
 st.markdown("## Types of wine")
 
-
-
-# 
-# st.multiselect('Multiselect', [1,2,3])
-# st.select_slider('Slide to select', options=[1,'2'])
-# st.slider('Slide me', min_value=0, max_value=10)
-
-# st.code('for i in range(8): foo()')
-# st.checkbox('Check me out')
-
-
-tab1, tab2= st.tabs(["White wine", "Red wine"])
+tab1, tab2= st.tabs(["## White wine", "## Red wine"])
+st.divider()
 
 with tab1:
    
@@ -47,52 +34,8 @@ with tab2:
    st.subheader("Red wine",divider='red',anchor=False)
    st.write('''
 Red wine, a captivating elixir derived from fermented dark grape varieties, boasts a rich tapestry of flavors, ranging from bold and fruity to complex and robust. The primary grape types, including Cabernet Sauvignon, Merlot, and Pinot Noir, contribute distinctive profiles to the world of red wines. The winemaking process, involving maceration and fermentation with grape skins, imparts deep color, tannins, and a myriad of aromas. Red wines can be classified into Old World and New World styles, with regions like Bordeaux, France, and Napa Valley, USA, showcasing their unique terroir. Aging in oak barrels adds layers of complexity, introducing notes of vanilla, spice, and smokiness. Red wine pairs exquisitely with hearty dishes such as steak, pasta, and mature cheeses, enhancing the dining experience. Serving temperatures vary by varietal, with lighter reds benefiting from a slight chill, while full-bodied reds unfold their nuances at room temperature. Red wine also holds a cultural significance, symbolizing celebrations, rituals, and convivial gatherings. In essence, red wine is a timeless indulgence, inviting enthusiasts to savor the artistry of winemaking and the pleasures of the palate.''')
-# st.subheader("Death Rate",divider='red',anchor=False)
-# import streamlit as st
-
-# st.title("Main Title")
-
-# # Using Markdown for better styling
-# st.markdown("## Section 1")
-# st.write("Content of section 1")
-
-# st.markdown("## Section 2")
-# st.write("Content of section 2")
-# # import streamlit as st
 
 
-# col1, col2 = st.columns(2)
-
-# with col1:
-#     st.title("Column 1")
-#     st.button("Button 1")
-
-# with col2:
-#     st.title("Column 2")
-#     st.button("Button 2")
-    ######################
-# st.slider('Pick a number', 0, 100, disabled=False)
-# # Input form
-# st.sidebar.header("User Input Features")
-# st.sidebar.radio('Choose:',[1,2])
-# st.sidebar.selectbox('Select', ['hii',2,3,4])
-
-
-
-
-# st.subheader('My sub')
-# st.sidebar.slider('Slideme', min_value=0, max_value=100)
-# Use st.markdown with HTML/CSS styling to increase the size of the entire sidebar
-st.markdown(
-    """
-    <style>
-        .sidebar .stSlider  {
-            max-width: 4000px;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 st.markdown(
         """<style>
     div[class*="stSlider"] > label > div[data-testid="stMarkdownContainer"] > p {
@@ -104,64 +47,45 @@ st.markdown(
 
 
 
-st.sidebar.selectbox('Select', ['white','red'])
-# st.subheader('My sub')
-fixed_acidity=st.sidebar.slider('fixed acidity', min_value=3.5, max_value=1.5)
+fixed_acidity=st.sidebar.slider('fixed acidity', min_value=3.8, max_value=15.8)
 
-# st.subheader('My sub')
 volatile_acidity=st.sidebar.slider('volatile acidity', min_value=0.08, max_value=1.5)
-
 
 citric_acid=st.sidebar.slider('citric acid', min_value=0.0, max_value=1.6)
 
-# st.subheader('My sub')
 residual_sugar=st.sidebar.slider('residual sugar', min_value=0.6, max_value=65.0)
 
-# st.subheader('My sub')
-chlorides=st.sidebar.slider('chlorides', min_value=0.01, max_value=.06)
+chlorides=st.sidebar.slider('chlorides', min_value=0.01, max_value=0.6)
 
 free_sulfur_dioxide=st.sidebar.slider('free sulfur dioxide', min_value=0, max_value=280)
 
-total_sulfur_dioxide=st.sidebar.slider('total sulfur dioxide', min_value=0, max_value=440)
+total_sulfur_dioxide=st.sidebar.slider('total sulfur dioxide', min_value=5, max_value=440)
 
 density=st.sidebar.slider('density', min_value=1.0, max_value=1.04)
 
-
 pH=st.sidebar.slider('pH', min_value=2.72, max_value=4.0)
 
+sulphates=st.sidebar.slider('sulphates', min_value=0.2, max_value=2.0)
 
-sulphates=st.sidebar.slider('sulphates', min_value=0, max_value=100)
-
-alcohol=st.sidebar.slider('alcohol', min_value=0, max_value=100)
+alcohol=st.sidebar.slider('alcohol', min_value=8.0, max_value=14.8)
 
 quality=st.sidebar.slider('quality', min_value=3, max_value=9)
 
 features = np.array([[fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol, quality]])
-# # # Display a chat input widget.
-# # st.chat_input("Say something")
 
-
-# # Identify missing values in the features array
-# missing_values = np.isnan(features)
-
-# # Option 1: Impute missing values with a specific value (e.g., 0)
-# features_imputed = np.nan_to_num(features, nan=0)
-
-
-# # Option 2: Remove rows with missing values
-# features_no_missing = features[~missing_values.any(axis=1)]
-
-
-
-
-
-# Now you can use the processed features in your prediction
 prediction = model.predict(features)
 
 
 
+st.write('''
+Explore our wine prediction platform featuring an advanced XGBoost model boasting a 95% accuracy in classifying wines as red or white. This powerful tool unveils intricate patterns, providing precise predictions for enthusiasts and industry professionals. Check out the predicted results to make informed decisions and elevate your wine experiences. Cheers to accurate insights!''')
+
+# Provide instructions
+st.write('## How to Use:')
+st.write('Adjust the sliders to input different wine features, and the model will predict whether the wine is red or white.')
 
 
-# Display the predicted wine quality
-st.write(f'Predicted Wine Quality: {prediction[0]}')
+threshold = 0.6 # Threshold for model classification
+predicted_wine_type = "Red Wine" if prediction[0] >= threshold else "White Wine"
+st.write(f'## Predicted Wine Type: {predicted_wine_type}')
 
