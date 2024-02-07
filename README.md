@@ -1,2 +1,4 @@
 
 In the wine prediction dataset, leveraging the power of XGBoost, a machine learning model has been successfully trained to classify wines as either red or white with an impressive accuracy of 95%. This high accuracy is indicative of the model's robust ability to discern patterns within the features of the dataset and make accurate predictions. XGBoost, known for its efficiency in handling complex relationships and boosting model performance, has proven to be a formidable choice for this classification task. The achieved accuracy of 95% attests to the effectiveness of the model, making it a valuable tool for wine classification, which is crucial in various industries such as viticulture, wine production, and quality control.
+<br>
+Streamlit link:[Touch👈](https://wine-prediction.streamlit.app/)
