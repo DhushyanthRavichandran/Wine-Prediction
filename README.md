@@ -21,9 +21,7 @@ The achieved accuracy of 95% demonstrates the effectiveness of the XGBoost model
 ## Conclusion
 The XGBoost model trained in this project showcases the effectiveness of machine learning in wine classification. Its high accuracy makes it a valuable asset for industries relying on accurate wine classification, such as viticulture and wine production.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
+## Deployment
 Streamlit link: [Wine Classification App](https://wine-prediction.streamlit.app/) deployed using Streamlit.
 
 
